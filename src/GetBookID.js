@@ -3,14 +3,14 @@ import "./App.css";
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-function RestProducts(props){
+function RestID(props){
 
 const [error, setError] = useState(null);
 const [isLoaded, setIsLoaded] = useState(false);
 const [books, setbooks] = useState([]);
 
 useEffect(()=>{
-    fetch("https://openlibrary.org/works/OL27448W/editions.json?offset=50&&limit=10")
+    fetch("http://openlibrary.org/search.json?q=the+lord+of+the+rings")
     .then(res => res.json())
     .then(
         (result)=>{
@@ -25,23 +25,6 @@ useEffect(()=>{
         )
 }, [])
 
-const showProduct = (key) =>{
-  console.log(key);
-  fetch('https://openlibrary.org' + key +'.json')
-  .then((res) => {
-      return (res.json());
-  })
-  .then(
-      (result) => {
-          props.setbook(result);
-          console.log(key)
-          console.log(result);
-      },
-      (error) => {
-          setError(error.key);
-      })
-}
-
 if (error) {
   return <div>Error: {error.message}</div>;
 } else if (!isLoaded) {
@@ -51,8 +34,6 @@ if (error) {
     <ul>
       {books.map(book => (
         <li key={book.id}>
-          {book.title}{"    ["}{book.full_title}{"]"}
-          <a onClick={() => {showProduct(book.key)}} href="#">Show</a>
         </li>
       ))}
     </ul>
