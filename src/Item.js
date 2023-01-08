@@ -7,8 +7,10 @@ function Item(props){
 
     return(
         <>
-            <h2>Product: ID: {props.useproduct.id}:</h2>
-            <h3>{props.useproduct.description}</h3>
+            <h2>Book: {props.book.title}</h2>
+            <h3>Release Date: {props.book.publish_date}</h3>
+            <h3>Publisher: {props.book.publishers}</h3>
+
         </>
     )   
     }
