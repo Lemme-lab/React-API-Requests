@@ -27,6 +27,7 @@ function Inputs(props){
         <>
         <h1> Search a Book </h1>
         <input type="text" placeholder="Search Book" name="book" value={inputs.book} onChange={handleChange}/>
+        <h3></h3>
         <button onClick={handleChange1} className="button1">Search</button>
         </>
     )
