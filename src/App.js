@@ -3,31 +3,31 @@ import './App.css';
 import RestProducts from './SampleRest';
 import Item from './Item';
 import Inputs from './Input'
+import RestID from './GetBookID'
 
 import { useState } from "react";
 
 
 
 function App() {
-  const [name, setname] = useState("null");
+  const [name, setname] = useState("");
+  const [key, setkey] = useState("");
   const [book, setbook] = useState("null");
+
+
 
   return (
     <div className="App">
       <header className="App-header">
-      {/*<Inputs setname={setname}/>*/}
-      {/*
-      Really weird json structure on the API
-      Would need to get a key from 
 
-      http://openlibrary.org/search.json?title=
+      <Inputs setname={setname}/>
 
-      to then put that key into RestProducts.
-      Failed to get the key from the search result. 
-           
-      */}
-      <RestProducts setbook={setbook} book/>
+      <RestID setkey={setkey} name={name}/>
+
+      <RestProducts setbook={setbook} key={key}/>
+
       <Item book={book}/>
+      
       </header>
     </div>
   );

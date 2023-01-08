@@ -8,14 +8,25 @@ function RestID(props){
 const [error, setError] = useState(null);
 const [isLoaded, setIsLoaded] = useState(false);
 const [books, setbooks] = useState([]);
+var count = 0;
+
+console.log("got here")
+
+var name = "Harry+Potter";
 
 useEffect(()=>{
-    fetch("http://openlibrary.org/search.json?q=the+lord+of+the+rings")
+
+    console.log("got here")
+    fetch("http://openlibrary.org/search.json?q=" + name)
     .then(res => res.json())
     .then(
         (result)=>{
         setIsLoaded(true);
-        setbooks(result.entries);
+        setbooks(result.docs);
+        console.log(result);
+        console.log("This is the key set: " + result.docs[1].key);
+        props.setkey(result.docs[1].key + "");
+        console.log("Put the key into the usestate");
 
         },
         (error)=>{
@@ -24,22 +35,7 @@ useEffect(()=>{
         }
         )
 }, [])
-
-if (error) {
-  return <div>Error: {error.message}</div>;
-} else if (!isLoaded) {
-  return <div>Loading...</div>;
-} else {
-  return (
-    <ul>
-      {books.map(book => (
-        <li key={book.id}>
-        </li>
-      ))}
-    </ul>
-  );
-}
 }
 
 
-export default RestProducts
+export default RestID

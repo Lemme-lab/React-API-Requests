@@ -9,8 +9,11 @@ const [error, setError] = useState(null);
 const [isLoaded, setIsLoaded] = useState(false);
 const [books, setbooks] = useState([]);
 
+console.log("In the SampleRest: " + props.key)
+var key = "/works/OL82586W";
+
 useEffect(()=>{
-    fetch("https://openlibrary.org/works/OL27448W/editions.json?offset=50&&limit=10")
+    fetch("https://openlibrary.org" + key + "/editions.json?offset=20&&limit=5")
     .then(res => res.json())
     .then(
         (result)=>{
