@@ -7,18 +7,15 @@ function RestProducts(props){
 
 const [error, setError] = useState(null);
 const [isLoaded, setIsLoaded] = useState(false);
-const [books, setbooks] = useState([]);
-
-console.log("In the SampleRest: " + props.key)
-var key = "/works/OL82586W";
+const [products, setProducts] = useState([]);
 
 useEffect(()=>{
-    fetch("https://openlibrary.org" + key + "/editions.json?offset=20&&limit=5")
+    fetch("https://dummyjson.com/products")
     .then(res => res.json())
     .then(
         (result)=>{
         setIsLoaded(true);
-        setbooks(result.entries);
+        setProducts(result.products);
 
         },
         (error)=>{
@@ -28,20 +25,19 @@ useEffect(()=>{
         )
 }, [])
 
-const showProduct = (key) =>{
-  console.log(key);
-  fetch('https://openlibrary.org' + key +'.json')
+const showProduct = (id) =>{
+  console.log(id);
+  fetch('https://dummyjson.com/products/' + id)
   .then((res) => {
       return (res.json());
   })
   .then(
       (result) => {
-          props.setbook(result);
-          console.log(key)
+          props.setproduct(result);
           console.log(result);
       },
       (error) => {
-          setError(error.key);
+          setError(error.id);
       })
 }
 
@@ -52,10 +48,10 @@ if (error) {
 } else {
   return (
     <ul>
-      {books.map(book => (
-        <li key={book.id}>
-          {book.title}{"    ["}{book.full_title}{"]"}
-          <a onClick={() => {showProduct(book.key)}} href="#">Show</a>
+      {products.map(product => (
+        <li key={product.id}>
+          {product.title} {product.price}
+          <a onClick={() => {showProduct(product.id)}} href="#">Show</a>
         </li>
       ))}
     </ul>
