@@ -12,12 +12,12 @@ var count = 0;
 
 console.log("got here")
 
-var name = "Harry+Potter";
+
 
 useEffect(()=>{
 
     console.log("got here")
-    fetch("http://openlibrary.org/search.json?q=" + name)
+    fetch("http://openlibrary.org/search.json?q=" + props.name)
     .then(res => res.json())
     .then(
         (result)=>{

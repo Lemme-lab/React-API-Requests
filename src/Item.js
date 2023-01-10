@@ -8,8 +8,10 @@ function Item(props){
     return(
         <>
             <h2>Book: {props.book.title}</h2>
-            <h3>Release Date: {props.book.publish_date}</h3>
-            <h3>Publisher: {props.book.publishers}</h3>
+            <h2>Release Date: {props.book.publish_date}</h2>
+            <h2>Publisher: {props.book.publishers}</h2>
+            <h2>Country: {props.book.publish_country}</h2>
+        
 
         </>
     )   
