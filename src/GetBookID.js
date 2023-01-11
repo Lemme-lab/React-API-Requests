@@ -3,39 +3,31 @@ import "./App.css";
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-function RestID(props){
+export function getkey(name,setkey) {
 
-const [error, setError] = useState(null);
-const [isLoaded, setIsLoaded] = useState(false);
-const [books, setbooks] = useState([]);
-var count = 0;
-
-console.log("got here")
-
-
-
-useEffect(()=>{
+    var error = null;
+    var isloaded = false;
+    var books = [];
+    var output = "";
 
     console.log("got here")
-    fetch("http://openlibrary.org/search.json?q=" + props.name)
+    fetch("http://openlibrary.org/search.json?q=" + name)
     .then(res => res.json())
     .then(
         (result)=>{
-        setIsLoaded(true);
-        setbooks(result.docs);
+        isloaded = false;
+        books = result.docs;
         console.log(result);
         console.log("This is the key set: " + result.docs[1].key);
-        props.setkey(result.docs[1].key + "");
-        console.log("Put the key into the usestate");
+        output = result.docs[1].key;
+        setkey(output);
 
         },
         (error)=>{
-        setIsLoaded(true);
-        setError(true);
+        isloaded = true;
+        error = true;
         }
         )
-}, [])
+
+    return output;
 }
-
-
-export default RestID

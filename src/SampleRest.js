@@ -9,11 +9,11 @@ const [error, setError] = useState(null);
 const [isLoaded, setIsLoaded] = useState(false);
 const [books, setbooks] = useState([]);
 
-console.log("In the SampleRest: " + props.key)
-var key = "/works/OL82586W";
+console.log("In the SampleRest: " + props.iskey)
+//var key = "/works/OL82586W";
 
 useEffect(()=>{
-    fetch("https://openlibrary.org" + key + "/editions.json?offset=20&&limit=5")
+    fetch("https://openlibrary.org" + "/works/OL82586W" + "/editions.json?limit=5")
     .then(res => res.json())
     .then(
         (result)=>{
@@ -30,7 +30,7 @@ useEffect(()=>{
 
 const showProduct = (key) =>{
   console.log(key);
-  fetch('https://openlibrary.org' + key +'.json')
+  fetch("https://openlibrary.org" + "/works/OL82586W" + "/editions.json?limit=5")
   .then((res) => {
       return (res.json());
   })
