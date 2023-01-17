@@ -29,7 +29,7 @@ function App() {
 
       <RestProducts setbook={setbook} iskey={key}/>
 
-      <Item book={book}/>
+      <Item isbook={book}/>
       
       </header>
     </div>

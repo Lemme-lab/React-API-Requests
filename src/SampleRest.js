@@ -11,15 +11,17 @@ const [books, setbooks] = useState([]);
 
 console.log("In the SampleRest: " + props.iskey)
 //var key = "/works/OL82586W";
-
+console.log("Just just before the fetch");
 useEffect(()=>{
-    fetch("https://openlibrary.org" + "/works/OL82586W" + "/editions.json?limit=5")
+    console.log("Just before the fetch");
+    fetch("https://openlibrary.org" + props.iskey + "/editions.json?limit=10")
     .then(res => res.json())
     .then(
         (result)=>{
+        console.log("Got into the fetch");
         setIsLoaded(true);
         setbooks(result.entries);
-
+        console.log(result.entries);
         },
         (error)=>{
         setIsLoaded(true);
@@ -28,17 +30,17 @@ useEffect(()=>{
         )
 }, [])
 
-const showProduct = (key) =>{
+const showProduct = (key, id) =>{
   console.log(key);
-  fetch("https://openlibrary.org" + "/works/OL82586W" + "/editions.json?limit=5")
+  fetch("https://openlibrary.org" + props.iskey + "/editions.json?limit=10")
   .then((res) => {
       return (res.json());
   })
   .then(
       (result) => {
-          props.setbook(result);
-          console.log(key)
-          console.log(result);
+          props.setbook(result.entries[id]);
+          console.log("KEY FOR DETAIL: " + key)
+          console.log("RESULT FOR DETAIL: " + result.entries);
       },
       (error) => {
           setError(error.key);
@@ -55,12 +57,13 @@ if (error) {
       {books.map(book => (
         <li key={book.id}>
           {book.title}{"    ["}{book.full_title}{"]"}
-          <a onClick={() => {showProduct(book.key)}} href="#">Show</a>
+          <a onClick={() => {showProduct(book.key, book.id)}} href="#">Show</a>
         </li>
       ))}
     </ul>
   );
 }
+
 }
 
 
