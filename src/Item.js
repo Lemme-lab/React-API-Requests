@@ -11,8 +11,6 @@ function Item(props){
             <h2>Release Date: {props.isbook.publish_date}</h2>
             <h2>Publisher: {props.isbook.publishers}</h2>
             <h2>Country: {props.isbook.publish_country}</h2>
-        
-
         </>
     )   
     }

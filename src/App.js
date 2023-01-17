@@ -13,9 +13,11 @@ function App() {
   const [name, setname] = useState("");
   const [key, setkey] = useState("/works/OL82586W");
   const [book, setbook] = useState("null");
+  const [updatevalue, update] = useState("null");
 
 
   useEffect(() => {getkey(name,setkey)}, [name]); 
+  useEffect(() => {console.log("refreshing")}, [updatevalue]); 
   
   
 
@@ -27,7 +29,7 @@ function App() {
 
       <Inputs setname={setname}/>
 
-      <RestProducts setbook={setbook} iskey={key}/>
+      <RestProducts setbook={setbook} iskey={key} update={update}/>
 
       <Item isbook={book}/>
       

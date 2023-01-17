@@ -18,8 +18,8 @@ export function getkey(name,setkey) {
         isloaded = false;
         books = result.docs;
         console.log(result);
-        console.log("This is the key set: " + result.docs[1].key);
-        output = result.docs[1].key;
+        console.log("This is the key set: " + result.docs[0].key);
+        output = result.docs[0].key;
         setkey(output);
 
         },
